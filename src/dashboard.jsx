@@ -7,9 +7,10 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, 
 // ─────────────────────────────────────────────────────────────────────────────
 const PLATFORMS = [
   { id: "instagram", label: "Instagram",  color: "#E1306C", icon: "📸" },
-  { id: "tiktok",   label: "TikTok",     color: "#010101", icon: "🎵" },
+  { id: "tiktok",   label: "TikTok",     color: "#ff0050", icon: "🎵" },
   { id: "youtube",  label: "YouTube",    color: "#FF0000", icon: "▶️" },
   { id: "twitter",  label: "X / Twitter",color: "#1DA1F2", icon: "𝕏"  },
+  { id: "bluesky",  label: "Bluesky",    color: "#0085ff", icon: "🦋" },
   { id: "linkedin", label: "LinkedIn",   color: "#0A66C2", icon: "💼" },
   { id: "gofundme", label: "GoFundMe",   color: "#02A95C", icon: "💚", manual: true },
 ];
@@ -18,21 +19,22 @@ const PLATFORMS = [
 // DEMO / SEED DATA (fallback when no API key is configured)
 // ─────────────────────────────────────────────────────────────────────────────
 const DUMMY = {
-  instagram: { followers:48200,  growth:3.2,  impressions:312000, engagement:4.8, reach:198000, clicks:8400  },
-  tiktok:    { followers:91400,  growth:11.7, impressions:820000, engagement:9.1, reach:640000, clicks:22100 },
-  youtube:   { followers:23800,  growth:1.4,  impressions:190000, engagement:6.3, reach:145000, clicks:5700  },
-  twitter:   { followers:15600,  growth:-0.8, impressions:98000,  engagement:2.1, reach:72000,  clicks:1900  },
-  linkedin:  { followers:8900,   growth:5.1,  impressions:54000,  engagement:5.4, reach:41000,  clicks:3100  },
-  gofundme:  { followers:2340,   growth:18.4, impressions:31000,  engagement:12.6,reach:28000,  clicks:14200 },
+  instagram: { followers:0,    growth:0,   impressions:0,   engagement:0,  reach:0,  clicks:0    },
+  tiktok:    { followers:1065, growth:5.2, impressions:8400, engagement:8.4, reach:3200, clicks:420 },
+  youtube:   { followers:0,    growth:0,   impressions:0,   engagement:0,  reach:0,  clicks:0    },
+  twitter:   { followers:0,    growth:0,   impressions:0,   engagement:0,  reach:0,  clicks:0    },
+  bluesky:   { followers:28,   growth:0,   impressions:94,  engagement:33.6,reach:28, clicks:0   },
+  linkedin:  { followers:0,    growth:0,   impressions:0,   engagement:0,  reach:0,  clicks:0    },
+  gofundme:  { followers:0,    growth:0,   impressions:0,   engagement:0,  reach:0,  clicks:0    },
 };
 const WEEKLY = [
-  { day:"Mon", instagram:4200, tiktok:9800,  youtube:2100, twitter:1200, linkedin:900,  gofundme:3400 },
-  { day:"Tue", instagram:5100, tiktok:11200, youtube:1900, twitter:900,  linkedin:1100, gofundme:4100 },
-  { day:"Wed", instagram:3800, tiktok:8900,  youtube:2400, twitter:1400, linkedin:800,  gofundme:2900 },
-  { day:"Thu", instagram:6200, tiktok:14000, youtube:2800, twitter:1100, linkedin:1400, gofundme:5200 },
-  { day:"Fri", instagram:7100, tiktok:16500, youtube:3200, twitter:1600, linkedin:1200, gofundme:6800 },
-  { day:"Sat", instagram:8900, tiktok:21000, youtube:4100, twitter:2100, linkedin:600,  gofundme:9100 },
-  { day:"Sun", instagram:7400, tiktok:18200, youtube:3600, twitter:1800, linkedin:500,  gofundme:7800 },
+  { day:"Mon", instagram:0, tiktok:820,  youtube:0, twitter:0, bluesky:8,  linkedin:0, gofundme:0 },
+  { day:"Tue", instagram:0, tiktok:950,  youtube:0, twitter:0, bluesky:12, linkedin:0, gofundme:0 },
+  { day:"Wed", instagram:0, tiktok:710,  youtube:0, twitter:0, bluesky:6,  linkedin:0, gofundme:0 },
+  { day:"Thu", instagram:0, tiktok:1200, youtube:0, twitter:0, bluesky:15, linkedin:0, gofundme:0 },
+  { day:"Fri", instagram:0, tiktok:1450, youtube:0, twitter:0, bluesky:20, linkedin:0, gofundme:0 },
+  { day:"Sat", instagram:0, tiktok:2100, youtube:0, twitter:0, bluesky:18, linkedin:0, gofundme:0 },
+  { day:"Sun", instagram:0, tiktok:1800, youtube:0, twitter:0, bluesky:22, linkedin:0, gofundme:0 },
 ];
 const SENTIMENT = [
   { name:"Positive", value:61, color:"#22c55e" },
@@ -40,45 +42,46 @@ const SENTIMENT = [
   { name:"Negative", value:11, color:"#f87171" },
 ];
 const COMMENTS_DATA = [
-  { id:1, platform:"tiktok",    user:"@techfanatic99",  text:"Literally the product I've been waiting for 😭", sentiment:"positive", time:"2h", likes:342 },
-  { id:2, platform:"instagram", user:"@minimalist.mai", text:"When does it ship to Europe?",                  sentiment:"neutral",  time:"3h", likes:89  },
-  { id:3, platform:"gofundme",  user:"BackerMike",      text:"Backed at Founder tier. Will there be add-ons?",sentiment:"positive", time:"4h", likes:14  },
-  { id:4, platform:"youtube",   user:"@gadgetguru",     text:"Audio dips around 3:20, might want to fix that.",sentiment:"neutral",  time:"5h", likes:27  },
-  { id:5, platform:"twitter",   user:"@skepticSam",     text:"Show me real benchmarks before I believe this.", sentiment:"negative", time:"6h", likes:11  },
-  { id:6, platform:"linkedin",  user:"Jennifer K.",     text:"Impressive team. Following this closely.",        sentiment:"positive", time:"8h", likes:44  },
+  { id:1, platform:"tiktok",   user:"@retrowave_dev",  text:"This is exactly the vibe I needed — love the pixel art style 🎮", sentiment:"positive", time:"2h", likes:87  },
+  { id:2, platform:"tiktok",   user:"@indiegamefan",   text:"Backed it! What engine are you building on?",                     sentiment:"positive", time:"3h", likes:42  },
+  { id:3, platform:"bluesky",  user:"kato-8.bsky",     text:"The retro aesthetic is so well done. Following for updates 🦋",   sentiment:"positive", time:"4h", likes:18  },
+  { id:4, platform:"twitter",  user:"@Kato8_Studios",  text:"When's the demo dropping? Been watching since day 1",             sentiment:"positive", time:"5h", likes:31  },
+  { id:5, platform:"twitter",  user:"@pixelskeptic",   text:"Crowdfunding a game studio feels risky — what's the plan?",       sentiment:"negative", time:"6h", likes:9   },
+  { id:6, platform:"youtube",  user:"@8bitreviewer",   text:"Audio mix on the studio tour is a bit low, but content is 🔥",    sentiment:"neutral",  time:"8h", likes:23  },
 ];
 const MSGS_DATA = [
-  { id:1, from:"Sarah", time:"9:14 AM",  text:"TikTok reel is ready for review 🎬",        unread:true  },
+  { id:1, from:"Katie", time:"9:14 AM",  text:"Studio tour edit is ready for review 🎬",    unread:true  },
   { id:2, from:"You",   time:"9:22 AM",  text:"On it — will check before noon."                          },
-  { id:3, from:"Sarah", time:"9:24 AM",  text:"Should we push LinkedIn to next week?"                    },
+  { id:3, from:"Katie", time:"9:24 AM",  text:"Should we push the LinkedIn post to next week?"           },
   { id:4, from:"You",   time:"9:31 AM",  text:"Good call. Move it to April 30th."                        },
-  { id:5, from:"Sarah", time:"10:02 AM", text:"Done! GoFundMe update #7 ready for review 🚀", unread:true },
+  { id:5, from:"Katie", time:"10:02 AM", text:"GoFundMe update drafted and ready to go 🚀",  unread:true },
 ];
 const TASKS_DATA = [
-  { id:1, text:"Review TikTok script",         assignee:"You",   due:"Today",  priority:"high", done:false },
-  { id:2, text:"Approve content calendar",     assignee:"Sarah", due:"Today",  priority:"high", done:false },
-  { id:3, text:"Export GoFundMe donor report", assignee:"You",   due:"Apr 25", priority:"med",  done:false },
-  { id:4, text:"Write LinkedIn article draft", assignee:"Sarah", due:"Apr 25", priority:"med",  done:true  },
-  { id:5, text:"Respond to YouTube comments",  assignee:"Sarah", due:"Apr 26", priority:"low",  done:false },
+  { id:1, text:"Post GoFundMe milestone update",      assignee:"Terry", due:"Today",  priority:"high", done:false },
+  { id:2, text:"Finish studio tour video edit",       assignee:"Katie", due:"Today",  priority:"high", done:false },
+  { id:3, text:"Reply to TikTok comments",            assignee:"Terry", due:"Apr 25", priority:"med",  done:false },
+  { id:4, text:"Write Bluesky Q&A thread",            assignee:"Terry", due:"Apr 25", priority:"med",  done:false },
+  { id:5, text:"Upload gameplay clip to YouTube",     assignee:"Katie", due:"Apr 26", priority:"low",  done:false },
+  { id:6, text:"Set up LinkedIn company page bio",    assignee:"Terry", due:"Apr 28", priority:"low",  done:true  },
 ];
-const DEFAULT_GFM = { title:"Help Us Launch", url:"", goal:100000, raised:73400, donors:892, daysLeft:12, latestUpdate:"We've hit 73% of our goal — thank you to every backer!" };
+const DEFAULT_GFM = { title:"Help Launch My Retro Game Studio", url:"https://www.gofundme.com/f/help-launch-my-retro-game-studio", goal:0, raised:0, donors:0, daysLeft:0, latestUpdate:"Update your campaign numbers in the Connect tab." };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CMS SEED DATA
 // ─────────────────────────────────────────────────────────────────────────────
 const CMS_SEED = [
-  { id:1,  title:"Product Reveal — Hero Reel",        type:"Video",    status:"posted",      platforms:["tiktok","instagram","youtube"], assignee:"Sarah", due:"Apr 18", notes:"Hit 200K views on TikTok",          tags:["launch","hero"]          },
-  { id:2,  title:"Founder Story — Why We Built This", type:"Video",    status:"posted",      platforms:["youtube","linkedin"],           assignee:"Sarah", due:"Apr 20", notes:"Strong LinkedIn engagement",        tags:["founder","story"]        },
-  { id:3,  title:"Behind the Scenes — Studio Tour",   type:"Video",    status:"editing",     platforms:["tiktok","instagram"],           assignee:"Sarah", due:"Apr 25", notes:"Cut needs music + colour grade",    tags:["bts","studio"]           },
-  { id:4,  title:"Backer Milestone #7 Update",        type:"Article",  status:"needs_post",  platforms:["gofundme","linkedin"],          assignee:"You",   due:"Apr 24", notes:"Approved — ready to publish",       tags:["crowdfunding","milestone"]},
-  { id:5,  title:"Product Feature Deep Dive",         type:"Carousel", status:"needs_post",  platforms:["instagram","linkedin"],         assignee:"Sarah", due:"Apr 24", notes:"Design done, caption finalised",    tags:["product","feature"]      },
-  { id:6,  title:"Community Q&A Thread",              type:"Thread",   status:"needs_post",  platforms:["twitter"],                      assignee:"You",   due:"Apr 25", notes:"Draft approved by team",            tags:["community","engagement"] },
-  { id:7,  title:"Unboxing Walkthrough Tutorial",     type:"Video",    status:"editing",     platforms:["youtube","tiktok"],             assignee:"Sarah", due:"Apr 26", notes:"Waiting on intro voiceover",        tags:["tutorial","product"]     },
-  { id:8,  title:"Team Spotlight — Meet Sarah",       type:"Article",  status:"needs_record",platforms:["linkedin","instagram"],         assignee:"You",   due:"Apr 28", notes:"Script approved, filming TBD",      tags:["team","culture"]         },
-  { id:9,  title:"April Crowdfunding Recap",          type:"Video",    status:"needs_record",platforms:["youtube","gofundme"],           assignee:"Sarah", due:"Apr 30", notes:"Outline ready, needs filming",      tags:["crowdfunding","recap"]   },
-  { id:10, title:"Product vs Competitor Analysis",    type:"Carousel", status:"needs_record",platforms:["instagram","twitter"],          assignee:"You",   due:"May 2",  notes:"Research done, design not started", tags:["product","comparison"]   },
-  { id:11, title:"GoFundMe Thank You Video",          type:"Video",    status:"needs_record",platforms:["gofundme","youtube","instagram"],assignee:"Sarah", due:"May 3",  notes:"Script in progress",                tags:["crowdfunding","gratitude"]},
-  { id:12, title:"May Content Calendar Teaser",       type:"Story",    status:"needs_record",platforms:["instagram","tiktok"],           assignee:"Sarah", due:"Apr 30", notes:"Not started",                       tags:["teaser","calendar"]      },
+  { id:1,  title:"Studio Origin Story — Why Retro?",       type:"Video",    status:"posted",      platforms:["tiktok","youtube"],              assignee:"Terry", due:"Apr 18", notes:"1K+ views on TikTok",               tags:["founder","story"]         },
+  { id:2,  title:"Game Dev Day in the Life",               type:"Video",    status:"posted",      platforms:["tiktok","instagram"],            assignee:"Terry", due:"Apr 20", notes:"Strong engagement",                 tags:["bts","devlog"]            },
+  { id:3,  title:"Studio Tour — Behind the Pixel Curtain", type:"Video",    status:"editing",     platforms:["tiktok","youtube"],              assignee:"Katie", due:"Apr 25", notes:"Cut needs music + colour grade",    tags:["bts","studio"]            },
+  { id:4,  title:"GoFundMe Milestone Update",              type:"Article",  status:"needs_post",  platforms:["gofundme","linkedin","bluesky"],  assignee:"Terry", due:"Apr 24", notes:"Approved — ready to publish",       tags:["crowdfunding","milestone"] },
+  { id:5,  title:"Retro Game Feature Showcase",            type:"Carousel", status:"needs_post",  platforms:["instagram","bluesky"],           assignee:"Katie", due:"Apr 24", notes:"Design done, caption finalised",    tags:["game","feature"]          },
+  { id:6,  title:"Community Q&A — Ask the Dev",           type:"Thread",   status:"needs_post",  platforms:["twitter","bluesky"],             assignee:"Terry", due:"Apr 25", notes:"Draft approved",                    tags:["community","engagement"]  },
+  { id:7,  title:"Gameplay Walkthrough Clip",              type:"Video",    status:"editing",     platforms:["youtube","tiktok"],              assignee:"Katie", due:"Apr 26", notes:"Waiting on voiceover",              tags:["gameplay","tutorial"]     },
+  { id:8,  title:"Meet the Team — Katie",                  type:"Article",  status:"needs_record",platforms:["linkedin","instagram"],          assignee:"Terry", due:"Apr 28", notes:"Script approved, filming TBD",      tags:["team","culture"]          },
+  { id:9,  title:"GoFundMe Campaign Recap Video",          type:"Video",    status:"needs_record",platforms:["youtube","gofundme"],            assignee:"Katie", due:"Apr 30", notes:"Outline ready, needs filming",      tags:["crowdfunding","recap"]    },
+  { id:10, title:"Retro vs Modern — Why It Matters",       type:"Carousel", status:"needs_record",platforms:["instagram","twitter","bluesky"], assignee:"Terry", due:"May 2",  notes:"Research done, design not started", tags:["retro","opinion"]         },
+  { id:11, title:"Backer Thank You Video",                 type:"Video",    status:"needs_record",platforms:["gofundme","youtube","instagram"], assignee:"Katie", due:"May 3",  notes:"Script in progress",                tags:["crowdfunding","gratitude"] },
+  { id:12, title:"May Game Dev Sprint Teaser",             type:"Story",    status:"needs_record",platforms:["instagram","tiktok","bluesky"],  assignee:"Katie", due:"Apr 30", notes:"Not started",                       tags:["teaser","devlog"]         },
 ];
 const CMS_STATUSES = [
   { id:"needs_record", label:"Needs Recording", color:"#f97316", bg:"#fff7ed", border:"#fed7aa", icon:"🎬" },
@@ -87,12 +90,12 @@ const CMS_STATUSES = [
   { id:"posted",       label:"Posted",          color:"#22c55e", bg:"#f0fdf4", border:"#bbf7d0", icon:"✅" },
 ];
 const SCHED_SEED = [
-  { id:1, title:"Product launch teaser reel",   platform:"tiktok",    date:"Apr 24", time:"10:00 AM", status:"scheduled", type:"Video"   },
-  { id:2, title:"Behind-the-scenes carousel",   platform:"instagram", date:"Apr 24", time:"12:30 PM", status:"scheduled", type:"Carousel"},
-  { id:3, title:"Campaign milestone update",    platform:"gofundme",  date:"Apr 24", time:"2:00 PM",  status:"scheduled", type:"Update"  },
-  { id:4, title:"Q&A thread: ask us anything",  platform:"twitter",   date:"Apr 25", time:"9:00 AM",  status:"draft",     type:"Thread"  },
-  { id:5, title:"Team spotlight — meet Sarah",  platform:"linkedin",  date:"Apr 25", time:"11:00 AM", status:"draft",     type:"Article" },
-  { id:6, title:"Unboxing walkthrough tutorial",platform:"youtube",   date:"Apr 26", time:"3:00 PM",  status:"review",    type:"Video"   },
+  { id:1, title:"Retro game dev day in the life",  platform:"tiktok",   date:"Apr 24", time:"10:00 AM", status:"scheduled", type:"Video"   },
+  { id:2, title:"Studio pixel art showcase",       platform:"instagram",date:"Apr 24", time:"12:30 PM", status:"scheduled", type:"Carousel"},
+  { id:3, title:"GoFundMe milestone update",       platform:"gofundme", date:"Apr 24", time:"2:00 PM",  status:"scheduled", type:"Update"  },
+  { id:4, title:"Q&A thread: ask the dev anything",platform:"bluesky",  date:"Apr 25", time:"9:00 AM",  status:"draft",     type:"Thread"  },
+  { id:5, title:"Kato.8 Studios story post",       platform:"linkedin", date:"Apr 25", time:"11:00 AM", status:"draft",     type:"Article" },
+  { id:6, title:"Gameplay walkthrough clip",       platform:"youtube",  date:"Apr 26", time:"3:00 PM",  status:"review",    type:"Video"   },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -143,11 +146,11 @@ function useLiveData() {
 // ─────────────────────────────────────────────────────────────────────────────
 // AI AGENT  (calls /api/ai — Anthropic key stays server-side)
 // ─────────────────────────────────────────────────────────────────────────────
-const AGENT_SYSTEM = `You are Orbit AI, a specialist social media strategist and content agent for a product studio running an active crowdfunding campaign on GoFundMe.
+const AGENT_SYSTEM = `You are Orbit AI, a specialist social media strategist and content agent for Kato.8 Studios — an indie retro game studio run by Terry Teng, currently running an active crowdfunding campaign on GoFundMe to fund the launch of the studio.
 
-The studio is across Instagram, TikTok, YouTube, X/Twitter, LinkedIn, and GoFundMe. Their existing content covers: product reveals, founder stories, behind-the-scenes studio footage, backer milestone updates, tutorials/unboxings, team spotlights, and community Q&As.
+Kato.8 Studios is active on TikTok (@kato.8_studios, 1,065 followers), Instagram (@kato.8_studios), YouTube (@Kato.8Studios), X/Twitter (@Kato8_Studios), Bluesky (@kato-8.bsky.social, 28 followers), LinkedIn, and GoFundMe. Their content covers: game dev devlogs, studio origin story, behind-the-scenes footage, gameplay clips, retro game culture, backer milestone updates, team spotlights, and community Q&As.
 
-Their goals: drive awareness of the product, grow GoFundMe backers, build community trust, and grow social following.
+Their goals: grow TikTok and Bluesky followings, drive GoFundMe backers, build a community of retro game enthusiasts, and establish Kato.8 Studios as a credible indie studio voice.
 
 When the user asks for suggestions, you should:
 1. Reference what's already working (high-engagement content types)
@@ -204,12 +207,12 @@ function AIAgent({ cmsItems }) {
   }
 
   const QUICK_PROMPTS = [
-    "Suggest 3 TikTok ideas that could go viral this week",
-    "What content would drive the most GoFundMe conversions right now?",
-    "We're at 73% funded — what should we post to push to 100%?",
-    "What trending formats should we adapt for our product niche?",
+    "Suggest 3 TikTok ideas for a retro game studio that could go viral",
+    "What content would drive the most GoFundMe backers right now?",
+    "How do we grow from 1K to 10K TikTok followers faster?",
+    "What retro gaming trends should Kato.8 be tapping into?",
     "Analyse our existing content and tell me what we should do more of",
-    "Give me a 7-day content sprint plan across all platforms",
+    "Give me a 7-day content sprint plan across TikTok, Bluesky and YouTube",
   ];
 
   function renderMessage(msg) {
@@ -695,8 +698,8 @@ function Comms() {
     <div className="space-y-5">
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
         <div className="border-b border-slate-100 px-5 py-3 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center text-sm font-bold text-violet-600">S</div>
-          <div><p className="text-sm font-semibold text-slate-800">Sarah — Social Media Manager</p><p className="text-xs text-emerald-500 font-medium">● Online</p></div>
+          <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center text-sm font-bold text-violet-600">K</div>
+          <div><p className="text-sm font-semibold text-slate-800">Katie — Content Manager</p><p className="text-xs text-emerald-500 font-medium">● Online</p></div>
         </div>
         <div className="p-5 space-y-3 h-72 overflow-y-auto">
           {msgs.map(m=>(
@@ -778,11 +781,12 @@ function Community() {
 // CONNECT  (shows server-side key status; GoFundMe stays manual)
 // ─────────────────────────────────────────────────────────────────────────────
 const SETUP_GUIDES = {
-  instagram: { steps:["Go to developers.facebook.com → My Apps → Create App","Add Instagram Basic Display product","Generate a long-lived User Access Token","Add INSTAGRAM_USER_TOKEN + INSTAGRAM_USER_ID to Vercel env vars"] },
-  tiktok:    { steps:["Apply at business-api.tiktok.com","Create an app and get an Access Token","Add TIKTOK_ACCESS_TOKEN + TIKTOK_ADVERTISER_ID to Vercel env vars"] },
-  youtube:   { steps:["Go to console.cloud.google.com → APIs & Services","Enable YouTube Data API v3","Create an API Key","Add YOUTUBE_API_KEY + YOUTUBE_CHANNEL_ID to Vercel env vars"] },
-  twitter:   { steps:["Go to developer.twitter.com → Projects & Apps","Create a project, get Bearer Token (read-only is fine)","Add TWITTER_BEARER_TOKEN + TWITTER_USERNAME to Vercel env vars"] },
-  linkedin:  { steps:["Go to developer.linkedin.com → My Apps → Create app","Request r_organization_social + r_organization_followers scopes","Generate OAuth 2.0 access token","Add LINKEDIN_ACCESS_TOKEN + LINKEDIN_ORG_ID to Vercel env vars"] },
+  instagram: { steps:["Go to developers.facebook.com → My Apps → Create App","Add Instagram Basic Display product","Generate a long-lived User Access Token","Add INSTAGRAM_USER_TOKEN=<token> and INSTAGRAM_USER_ID=<id> to Vercel env vars"] },
+  tiktok:    { steps:["Apply at business-api.tiktok.com","Create an app and get an Access Token","Add TIKTOK_ACCESS_TOKEN=<token> and TIKTOK_ADVERTISER_ID=<id> to Vercel env vars"] },
+  youtube:   { steps:["Go to console.cloud.google.com → APIs & Services","Enable YouTube Data API v3","Create an API Key (restrict to YouTube Data API v3)","Add YOUTUBE_API_KEY=<key> and YOUTUBE_CHANNEL_ID=UCQYpZ5N4ZIEY_NfczLCI3KQ to Vercel env vars"] },
+  twitter:   { steps:["Go to developer.twitter.com → Projects & Apps","Create a project, copy the Bearer Token (read-only)","Add TWITTER_BEARER_TOKEN=<token> and TWITTER_USERNAME=Kato8_Studios to Vercel env vars"] },
+  bluesky:   { steps:["No API key needed — Bluesky data is fetched from the public API automatically","Live data is already active for @kato-8.bsky.social"] },
+  linkedin:  { steps:["Go to developer.linkedin.com → My Apps → Create app","Request r_organization_social + r_organization_followers scopes","Generate OAuth 2.0 access token","Add LINKEDIN_ACCESS_TOKEN=<token> and LINKEDIN_ORG_ID=<id> to Vercel env vars"] },
 };
 
 function Connect({ available, gfm, onGfm }) {
