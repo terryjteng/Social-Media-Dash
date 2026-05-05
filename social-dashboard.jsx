@@ -47,18 +47,19 @@ const COMMENTS_DATA = [
   { id:6, platform:"linkedin",  user:"Jennifer K.",     text:"Impressive team. Following this closely.", sentiment:"positive", time:"8h", likes:44  },
 ];
 const MSGS_DATA = [
-  { id:1, from:"Sarah", time:"9:14 AM",  text:"TikTok reel is ready for review 🎬", unread:true },
-  { id:2, from:"You",   time:"9:22 AM",  text:"On it — will check before noon." },
-  { id:3, from:"Sarah", time:"9:24 AM",  text:"Should we push LinkedIn to next week?" },
-  { id:4, from:"You",   time:"9:31 AM",  text:"Good call. Move it to April 30th." },
-  { id:5, from:"Sarah", time:"10:02 AM", text:"Done! GoFundMe update #7 ready for review 🚀", unread:true },
+  { id:1, from:"Katie L", time:"9:14 AM",  text:"Last Light devlog reel is ready for review 🎬", unread:true },
+  { id:2, from:"You",     time:"9:22 AM",  text:"On it — will check before noon." },
+  { id:3, from:"Katie L", time:"9:24 AM",  text:"Should we push the LinkedIn studio update to next week?" },
+  { id:4, from:"You",     time:"9:31 AM",  text:"Good call. Move it to May 10th." },
+  { id:5, from:"Katie L", time:"10:02 AM", text:"Done! Corebound character reveal is scheduled for Thursday 🚀", unread:true },
 ];
 const TASKS_DATA = [
-  { id:1, text:"Review TikTok script",          assignee:"You",   due:"Today",  priority:"high", done:false },
-  { id:2, text:"Approve content calendar",      assignee:"Sarah", due:"Today",  priority:"high", done:false },
-  { id:3, text:"Export GoFundMe donor report",  assignee:"You",   due:"Apr 25", priority:"med",  done:false },
-  { id:4, text:"Write LinkedIn article draft",  assignee:"Sarah", due:"Apr 25", priority:"med",  done:true  },
-  { id:5, text:"Respond to YouTube comments",   assignee:"Sarah", due:"Apr 26", priority:"low",  done:false },
+  { id:1, text:"Review Last Light devlog script",        assignee:"You",     due:"Today",   priority:"high", done:false },
+  { id:2, text:"Approve May content calendar",           assignee:"Katie L", due:"Today",   priority:"high", done:false },
+  { id:3, text:"Schedule Corebound character reveal",    assignee:"You",     due:"May 8",   priority:"high", done:false },
+  { id:4, text:"Write studio LinkedIn update draft",     assignee:"Katie L", due:"May 9",   priority:"med",  done:true  },
+  { id:5, text:"Respond to YouTube devlog comments",     assignee:"Katie L", due:"May 10",  priority:"low",  done:false },
+  { id:6, text:"Post Big Boss Cleanup art showcase",     assignee:"Aaron R", due:"May 10",  priority:"med",  done:false },
 ];
 const DEFAULT_GFM = { title:"Help Us Launch", url:"", goal:100000, raised:73400, donors:892, daysLeft:12, latestUpdate:"We've hit 73% of our goal — thank you to every backer!" };
 
@@ -66,18 +67,18 @@ const DEFAULT_GFM = { title:"Help Us Launch", url:"", goal:100000, raised:73400,
 // CMS SEED DATA
 // ─────────────────────────────────────────────────────────────────────────────
 const CMS_SEED = [
-  { id:1,  title:"Product Reveal — Hero Reel",        type:"Video",    status:"posted",     platforms:["tiktok","instagram","youtube"], assignee:"Sarah", due:"Apr 18", notes:"Hit 200K views on TikTok",          tags:["launch","hero"] },
-  { id:2,  title:"Founder Story — Why We Built This", type:"Video",    status:"posted",     platforms:["youtube","linkedin"],           assignee:"Sarah", due:"Apr 20", notes:"Strong LinkedIn engagement",        tags:["founder","story"] },
-  { id:3,  title:"Behind the Scenes — Studio Tour",   type:"Video",    status:"editing",    platforms:["tiktok","instagram"],           assignee:"Sarah", due:"Apr 25", notes:"Cut needs music + colour grade",    tags:["bts","studio"] },
-  { id:4,  title:"Backer Milestone #7 Update",        type:"Article",  status:"needs_post", platforms:["gofundme","linkedin"],          assignee:"You",   due:"Apr 24", notes:"Approved — ready to publish",       tags:["crowdfunding","milestone"] },
-  { id:5,  title:"Product Feature Deep Dive",         type:"Carousel", status:"needs_post", platforms:["instagram","linkedin"],         assignee:"Sarah", due:"Apr 24", notes:"Design done, caption finalised",    tags:["product","feature"] },
-  { id:6,  title:"Community Q&A Thread",              type:"Thread",   status:"needs_post", platforms:["twitter"],                      assignee:"You",   due:"Apr 25", notes:"Draft approved by team",            tags:["community","engagement"] },
-  { id:7,  title:"Unboxing Walkthrough Tutorial",     type:"Video",    status:"editing",    platforms:["youtube","tiktok"],             assignee:"Sarah", due:"Apr 26", notes:"Waiting on intro voiceover",        tags:["tutorial","product"] },
-  { id:8,  title:"Team Spotlight — Meet Sarah",       type:"Article",  status:"needs_record",platforms:["linkedin","instagram"],        assignee:"You",   due:"Apr 28", notes:"Script approved, filming TBD",      tags:["team","culture"] },
-  { id:9,  title:"April Crowdfunding Recap",          type:"Video",    status:"needs_record",platforms:["youtube","gofundme"],          assignee:"Sarah", due:"Apr 30", notes:"Outline ready, needs filming",      tags:["crowdfunding","recap"] },
-  { id:10, title:"Product vs Competitor Analysis",   type:"Carousel", status:"needs_record",platforms:["instagram","twitter"],         assignee:"You",   due:"May 2",  notes:"Research done, design not started", tags:["product","comparison"] },
-  { id:11, title:"GoFundMe Thank You Video",         type:"Video",    status:"needs_record",platforms:["gofundme","youtube","instagram"],assignee:"Sarah",due:"May 3",  notes:"Script in progress",                tags:["crowdfunding","gratitude"] },
-  { id:12, title:"May Content Calendar Teaser",      type:"Story",    status:"needs_record",platforms:["instagram","tiktok"],          assignee:"Sarah", due:"Apr 30", notes:"Not started",                       tags:["teaser","calendar"] },
+  { id:1,  title:"Last Light — Devlog #1: World Building",     type:"Video",    status:"posted",      platforms:["youtube","tiktok"],             assignee:"Katie L", due:"Apr 20", notes:"Strong YouTube engagement, 45K views",      tags:["last-light","devlog","worldbuilding"] },
+  { id:2,  title:"Founder Story — How Kato.8 Started",         type:"Video",    status:"posted",      platforms:["youtube","linkedin"],            assignee:"Katie L", due:"Apr 22", notes:"Best-performing LinkedIn post this month",  tags:["founder","studio","culture"] },
+  { id:3,  title:"Art Showcase — Last Light Concept Art",      type:"Carousel", status:"posted",      platforms:["instagram","twitter"],           assignee:"Aaron R", due:"Apr 25", notes:"High save rate on Instagram",               tags:["last-light","art","concept"] },
+  { id:4,  title:"Behind the Scenes — Studio Workflow",        type:"Video",    status:"editing",     platforms:["tiktok","instagram"],            assignee:"Katie L", due:"May 6",  notes:"Cut needs music + final review",            tags:["bts","studio","workflow"] },
+  { id:5,  title:"Corebound — Character Reveal: Lead",         type:"Video",    status:"needs_post",  platforms:["youtube","tiktok","instagram"],  assignee:"Katie L", due:"May 8",  notes:"Approved — ready to schedule",              tags:["corebound","character","reveal"] },
+  { id:6,  title:"Team Spotlight — Meet Hailey Hebden",        type:"Article",  status:"needs_post",  platforms:["linkedin","instagram"],          assignee:"Aaron R", due:"May 9",  notes:"Copy done, waiting on headshot",            tags:["team","culture","corebound"] },
+  { id:7,  title:"Last Light — Mechanic Deep Dive",            type:"Video",    status:"needs_post",  platforms:["youtube"],                       assignee:"You",     due:"May 10", notes:"Script finalized, needs thumbnail",         tags:["last-light","gameplay","mechanic"] },
+  { id:8,  title:"Community Q&A — Ask the Dev Team",           type:"Thread",   status:"needs_post",  platforms:["twitter"],                       assignee:"You",     due:"May 10", notes:"Questions collected, ready to post",        tags:["community","engagement"] },
+  { id:9,  title:"Big Boss Cleanup — Art Style Reveal",        type:"Carousel", status:"needs_record",platforms:["instagram","tiktok"],            assignee:"Katie L", due:"May 12", notes:"Art assets ready from Bryan N",             tags:["big-boss-cleanup","art","reveal"] },
+  { id:10, title:"Speedpaint — Last Light Environment Art",    type:"Video",    status:"needs_record",platforms:["tiktok","youtube"],              assignee:"Aaron R", due:"May 13", notes:"Coordinate with Keolani B for footage",     tags:["last-light","art","timelapse"] },
+  { id:11, title:"Kato.8 Studio Tour — Discord Highlight",     type:"Video",    status:"needs_record",platforms:["youtube","instagram"],           assignee:"You",     due:"May 15", notes:"Script outline approved",                   tags:["studio","culture","discord"] },
+  { id:12, title:"May Momentum Update — All Projects",         type:"Article",  status:"needs_record",platforms:["linkedin"],                      assignee:"Aaron R", due:"May 16", notes:"Not started",                               tags:["studio","update","milestone"] },
 ];
 
 const CMS_STATUSES = [
@@ -112,18 +113,25 @@ function ScBadge({ status }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // AI CONTENT AGENT
 // ─────────────────────────────────────────────────────────────────────────────
-const AGENT_SYSTEM = `You are Orbit AI, a specialist social media strategist and content agent for a product studio running an active crowdfunding campaign on GoFundMe.
+const AGENT_SYSTEM = `You are Orbit AI, a specialist social media strategist and content agent for Kato.8 Studios — an independent game development studio based in Los Angeles, CA. The studio is run by founder Terry Teng and has a 39-person team working across four active projects: Last Light, Corebound, and Big Boss Cleanup.
 
-The studio is across Instagram, TikTok, YouTube, X/Twitter, LinkedIn, and GoFundMe. Their existing content covers: product reveals, founder stories, behind-the-scenes studio footage, backer milestone updates, tutorials/unboxings, team spotlights, and community Q&As.
+Kato.8 Studios is active on Instagram, TikTok, YouTube, X/Twitter, and LinkedIn. Their content covers: game dev behind-the-scenes, art showcases, team spotlights, game mechanic reveals, dev vlogs, trailer releases, and community engagement.
 
-Their goals: drive awareness of the product, grow GoFundMe backers, build community trust, and grow social following.
+Their goals: build hype and community for their upcoming games, grow social following across all platforms, attract talent and partners, and establish Kato.8 as a recognizable indie studio brand.
+
+Key content pillars:
+- Art & Animation showcases (concept art, 3D renders, pixel art, animatics)
+- Dev diary / behind-the-scenes (process videos, team workflow, tools used)
+- Game reveals (mechanic teasers, world-building, character reveals)
+- Team spotlights (introduce collaborators, humanize the studio)
+- Community engagement (polls, Q&As, fan art reposts)
 
 When the user asks for suggestions, you should:
 1. Reference what's already working (high-engagement content types)
-2. Identify trending formats relevant to their niche (product/tech/crowdfunding)
+2. Identify trending formats relevant to indie game dev (devlogs, timelapse, game dev humour)
 3. Suggest specific, actionable content ideas with: title, format, platforms, why it'll work, and a brief caption/hook
-4. Prioritise content that crosses over between social traction AND crowdfunding conversion
-5. Keep suggestions creative, specific, and ready to brief to a content creator
+4. Prioritise content that builds community AND creates buzz for the studio's games
+5. Keep suggestions creative, specific, and ready to brief to the social media team
 
 Format your suggestions clearly. When listing ideas use this structure:
 **[Title]** | [Platform(s)] | [Format]
@@ -135,7 +143,7 @@ Be conversational but sharp. You're a strategic partner, not a generic chatbot.`
 
 function AIAgent({ cmsItems }) {
   const [messages, setMessages] = useState([
-    { role:"assistant", content:"Hey! I'm Orbit AI 👋 I'm here to help you plan content that drives both social traction and GoFundMe conversions.\n\nTell me what you need — I can suggest new ideas based on trending formats, analyse what's working in your existing library, or help you plan your next campaign push. What are we focusing on?" }
+    { role:"assistant", content:"Hey! I'm Orbit AI 👋 I'm here to help Kato.8 Studios build an audience and create buzz for your games.\n\nTell me what you need — I can suggest content ideas for Last Light, Corebound, or Big Boss Cleanup, analyse what's working in your library, plan a launch campaign, or help you grow across TikTok, Instagram, YouTube, and LinkedIn. What are we focusing on?" }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -175,12 +183,12 @@ function AIAgent({ cmsItems }) {
   }
 
   const QUICK_PROMPTS = [
-    "Suggest 3 TikTok ideas that could go viral this week",
-    "What content would drive the most GoFundMe conversions right now?",
-    "We're at 73% funded — what should we post to push to 100%?",
-    "What trending formats should we adapt for our product niche?",
+    "Suggest 3 TikTok devlog ideas for Last Light that could go viral",
+    "How should we reveal a new game mechanic on social media?",
+    "Plan a 7-day content sprint to build hype before a game trailer drop",
+    "What trending indie game dev formats should we adapt?",
     "Analyse our existing content and tell me what we should do more of",
-    "Give me a 7-day content sprint plan across all platforms",
+    "Write a team spotlight concept for one of our artists",
   ];
 
   function renderMessage(msg) {
@@ -376,7 +384,7 @@ function CMS() {
             </div>
             <div>
               <label className="text-xs text-slate-500 font-medium block mb-1">Assignee</label>
-              <input value={newItem.assignee} onChange={e=>setNewItem(p=>({...p,assignee:e.target.value}))} placeholder="You / Sarah"
+              <input value={newItem.assignee} onChange={e=>setNewItem(p=>({...p,assignee:e.target.value}))} placeholder="You / Katie L / Aaron R"
                 className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-slate-400"/>
             </div>
             <div>
@@ -575,12 +583,12 @@ function Analytics({ conns, gfm }) {
 // SCHEDULER
 // ─────────────────────────────────────────────────────────────────────────────
 const SCHED_SEED = [
-  { id:1, title:"Product launch teaser reel",    platform:"tiktok",    date:"Apr 24", time:"10:00 AM", status:"scheduled", type:"Video" },
-  { id:2, title:"Behind-the-scenes carousel",    platform:"instagram", date:"Apr 24", time:"12:30 PM", status:"scheduled", type:"Carousel" },
-  { id:3, title:"Campaign milestone update",     platform:"gofundme",  date:"Apr 24", time:"2:00 PM",  status:"scheduled", type:"Update" },
-  { id:4, title:"Q&A thread: ask us anything",  platform:"twitter",   date:"Apr 25", time:"9:00 AM",  status:"draft",     type:"Thread" },
-  { id:5, title:"Team spotlight — meet Sarah",  platform:"linkedin",  date:"Apr 25", time:"11:00 AM", status:"draft",     type:"Article" },
-  { id:6, title:"Unboxing walkthrough tutorial",platform:"youtube",   date:"Apr 26", time:"3:00 PM",  status:"review",    type:"Video" },
+  { id:1, title:"Last Light devlog #1 — world building",  platform:"tiktok",    date:"May 6",  time:"10:00 AM", status:"scheduled", type:"Video" },
+  { id:2, title:"Concept art showcase carousel",          platform:"instagram", date:"May 6",  time:"12:30 PM", status:"scheduled", type:"Carousel" },
+  { id:3, title:"Kato.8 studio update — May momentum",   platform:"linkedin",  date:"May 7",  time:"2:00 PM",  status:"scheduled", type:"Article" },
+  { id:4, title:"Ask the dev team — Q&A thread",         platform:"twitter",   date:"May 8",  time:"9:00 AM",  status:"draft",     type:"Thread" },
+  { id:5, title:"Team spotlight — meet Hailey Hebden",   platform:"linkedin",  date:"May 9",  time:"11:00 AM", status:"draft",     type:"Article" },
+  { id:6, title:"Corebound character reveal",            platform:"youtube",   date:"May 10", time:"3:00 PM",  status:"review",    type:"Video" },
 ];
 function Scheduler() {
   const [posts, setPosts] = useState(SCHED_SEED);
@@ -626,7 +634,7 @@ function Comms() {
   return(
     <div className="space-y-5">
       <div className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
-        <div className="border-b border-slate-100 px-5 py-3 flex items-center gap-3"><div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center text-sm font-bold text-violet-600">S</div><div><p className="text-sm font-semibold text-slate-800">Sarah — Social Media Manager</p><p className="text-xs text-emerald-500 font-medium">● Online</p></div></div>
+        <div className="border-b border-slate-100 px-5 py-3 flex items-center gap-3"><div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center text-sm font-bold text-violet-600">KL</div><div><p className="text-sm font-semibold text-slate-800">Katie L — Social Media Intern</p><p className="text-xs text-emerald-500 font-medium">● Online</p></div></div>
         <div className="p-5 space-y-3 h-72 overflow-y-auto">{msgs.map(m=><div key={m.id} className={`flex ${m.from==="You"?"justify-end":"justify-start"}`}><div className={`max-w-xs px-4 py-2.5 rounded-2xl text-sm ${m.from==="You"?"bg-slate-800 text-white rounded-br-sm":"bg-slate-100 text-slate-800 rounded-bl-sm"}`}>{m.text}<p className="text-xs mt-1 opacity-40">{m.time}</p></div></div>)}</div>
         <div className="border-t border-slate-100 p-3 flex gap-2"><input value={inp} onChange={e=>setInp(e.target.value)} onKeyDown={e=>e.key==="Enter"&&send()} placeholder="Message Sarah…" className="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-slate-400"/><button onClick={send} className="px-4 py-2 bg-slate-800 text-white text-xs font-medium rounded-lg hover:bg-slate-700 transition-colors">Send</button></div>
       </div>
@@ -700,12 +708,27 @@ const NAV = [
 
 const DEFAULT_GFM_DATA = { title:"Help Us Launch", url:"", goal:100000, raised:73400, donors:892, daysLeft:12, latestUpdate:"We've hit 73% of our goal — thank you to every backer!" };
 
+const HR_TOOL_API = "http://localhost:3001"
+const FALLBACK_TEAM = ["Terry T", "Katie L", "Aaron R", "Ryan Kenfield", "Pride St. Clair", "Tessa Lee", "Adam Manning"]
+
 export default function App() {
   const [tab, setTab] = useState("analytics");
   const [conns, setConns] = useState({});
   const [gfm, setGfm] = useState(DEFAULT_GFM_DATA);
   const [cmsItems, setCmsItems] = useState(CMS_SEED);
+  const [teamMembers, setTeamMembers] = useState(FALLBACK_TEAM);
   const connCount = Object.keys(conns).length;
+
+  useEffect(() => {
+    fetch(`${HR_TOOL_API}/api/team`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.members) {
+          setTeamMembers(data.members.map(m => m.name))
+        }
+      })
+      .catch(() => {})
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50" style={{ fontFamily:"'DM Sans','Helvetica Neue',sans-serif" }}>
@@ -714,8 +737,8 @@ export default function App() {
       <header className="bg-white border-b border-slate-100 sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center gap-4">
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-7 h-7 bg-slate-800 rounded-lg flex items-center justify-center text-white text-xs font-bold">◈</div>
-            <span className="font-bold text-slate-800 text-sm">Orbit</span>
+            <div className="w-7 h-7 bg-slate-800 rounded-lg flex items-center justify-center text-white text-xs font-bold">K8</div>
+            <span className="font-bold text-slate-800 text-sm">Kato.8</span>
             <span className="text-slate-300 text-xs ml-1 hidden md:block">Social Command</span>
           </div>
           <div className="hidden lg:flex items-center gap-2 ml-3">
@@ -726,8 +749,8 @@ export default function App() {
             <span className="text-xs font-medium px-2.5 py-1 rounded-full border bg-slate-50 text-slate-600 border-slate-200">🗂️ {cmsItems.length} content pieces</span>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-violet-100 flex items-center justify-center text-xs font-bold text-violet-600">S</div>
-            <div className="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">Y</div>
+            <div className="w-7 h-7 rounded-full bg-violet-100 flex items-center justify-center text-xs font-bold text-violet-600">KL</div>
+            <div className="w-7 h-7 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">TT</div>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-5 flex gap-0 overflow-x-auto">
