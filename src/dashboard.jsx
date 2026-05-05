@@ -31,10 +31,9 @@ const PLATFORMS = [
   { id: "twitter",  label: "X / Twitter",color: "#1DA1F2", icon: "𝕏"  },
   { id: "bluesky",  label: "Bluesky",    color: "#0085ff", icon: "🦋" },
   { id: "linkedin", label: "LinkedIn",   color: "#0A66C2", icon: "💼" },
-  { id: "gofundme", label: "GoFundMe",   color: "#02A95C", icon: "💚", manual: true },
 ];
 
-const TEAM_MEMBERS = ["Terry Teng", "Katie Han"];
+const TEAM_MEMBERS = ["Terry Teng", "Katie L", "Aaron R", "Ryan K", "Pride", "Bryan N"];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SEED DATA
@@ -46,16 +45,15 @@ const DUMMY = {
   twitter:   { followers:0,    growth:0,    impressions:0,    engagement:0,   reach:0,    clicks:0   },
   bluesky:   { followers:28,   growth:0,    impressions:94,   engagement:33.6,reach:28,   clicks:0   },
   linkedin:  { followers:0,    growth:0,    impressions:0,    engagement:0,   reach:0,    clicks:0   },
-  gofundme:  { followers:0,    growth:0,    impressions:0,    engagement:0,   reach:0,    clicks:0   },
 };
 const WEEKLY = [
-  { day:"Mon", instagram:0, tiktok:820,  youtube:0, twitter:0, bluesky:8,  linkedin:0, gofundme:0 },
-  { day:"Tue", instagram:0, tiktok:950,  youtube:0, twitter:0, bluesky:12, linkedin:0, gofundme:0 },
-  { day:"Wed", instagram:0, tiktok:710,  youtube:0, twitter:0, bluesky:6,  linkedin:0, gofundme:0 },
-  { day:"Thu", instagram:0, tiktok:1200, youtube:0, twitter:0, bluesky:15, linkedin:0, gofundme:0 },
-  { day:"Fri", instagram:0, tiktok:1450, youtube:0, twitter:0, bluesky:20, linkedin:0, gofundme:0 },
-  { day:"Sat", instagram:0, tiktok:2100, youtube:0, twitter:0, bluesky:18, linkedin:0, gofundme:0 },
-  { day:"Sun", instagram:0, tiktok:1800, youtube:0, twitter:0, bluesky:22, linkedin:0, gofundme:0 },
+  { day:"Mon", instagram:0, tiktok:820,  youtube:0, twitter:0, bluesky:8,  linkedin:0 },
+  { day:"Tue", instagram:0, tiktok:950,  youtube:0, twitter:0, bluesky:12, linkedin:0 },
+  { day:"Wed", instagram:0, tiktok:710,  youtube:0, twitter:0, bluesky:6,  linkedin:0 },
+  { day:"Thu", instagram:0, tiktok:1200, youtube:0, twitter:0, bluesky:15, linkedin:0 },
+  { day:"Fri", instagram:0, tiktok:1450, youtube:0, twitter:0, bluesky:20, linkedin:0 },
+  { day:"Sat", instagram:0, tiktok:2100, youtube:0, twitter:0, bluesky:18, linkedin:0 },
+  { day:"Sun", instagram:0, tiktok:1800, youtube:0, twitter:0, bluesky:22, linkedin:0 },
 ];
 const SENTIMENT = [
   { name:"Positive", value:61, color:"#E0607A" },
@@ -75,14 +73,8 @@ const MSGS_DATA = [
   { id:2, from:"You",   time:"9:22 AM",  text:"On it — will check before noon."                         },
   { id:3, from:"Katie", time:"9:24 AM",  text:"Should we push the LinkedIn post to next week?"          },
   { id:4, from:"You",   time:"9:31 AM",  text:"Good call. Move it to April 30th."                       },
-  { id:5, from:"Katie", time:"10:02 AM", text:"GoFundMe update drafted and ready to go 🚀", unread:true },
+  { id:5, from:"Katie", time:"10:02 AM", text:"Last Light devlog clip is cut and ready for TikTok 🚀", unread:true },
 ];
-const DEFAULT_GFM = {
-  title:"Help Launch My Retro Game Studio",
-  url:"https://www.gofundme.com/f/help-launch-my-retro-game-studio",
-  goal:0, raised:0, donors:0, daysLeft:0,
-  latestUpdate:"Update your campaign numbers in the Connect tab.",
-};
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CMS SEED  (Topics — update when spreadsheet provided)
@@ -97,14 +89,14 @@ const CMS_SEED = [
   { id:1,  title:"Studio Origin Story — Why Retro?",       type:"Video",    status:"posted",      platforms:["tiktok","youtube"],              assignee:"Terry", due:"Apr 18", notes:"1K+ views on TikTok",               tags:["founder","story"]         },
   { id:2,  title:"Game Dev Day in the Life",               type:"Video",    status:"posted",      platforms:["tiktok","instagram"],            assignee:"Terry", due:"Apr 20", notes:"Strong engagement",                 tags:["bts","devlog"]            },
   { id:3,  title:"Studio Tour — Behind the Pixel Curtain", type:"Video",    status:"editing",     platforms:["tiktok","youtube"],              assignee:"Katie", due:"Apr 25", notes:"Cut needs music + colour grade",    tags:["bts","studio"]            },
-  { id:4,  title:"GoFundMe Milestone Update",              type:"Article",  status:"needs_post",  platforms:["gofundme","linkedin","bluesky"],  assignee:"Terry", due:"Apr 24", notes:"Approved — ready to publish",       tags:["crowdfunding","milestone"] },
+  { id:4,  title:"Corebound Character Reveal — The Enforcer", type:"Carousel", status:"needs_post",  platforms:["instagram","twitter","bluesky"],  assignee:"Aaron R", due:"May 10", notes:"Art approved — caption finalised",    tags:["corebound","reveal"]      },
   { id:5,  title:"Retro Game Feature Showcase",            type:"Carousel", status:"needs_post",  platforms:["instagram","bluesky"],           assignee:"Katie", due:"Apr 24", notes:"Design done, caption finalised",    tags:["game","feature"]          },
   { id:6,  title:"Community Q&A — Ask the Dev",           type:"Thread",   status:"needs_post",  platforms:["twitter","bluesky"],             assignee:"Terry", due:"Apr 25", notes:"Draft approved",                    tags:["community","engagement"]  },
   { id:7,  title:"Gameplay Walkthrough Clip",              type:"Video",    status:"editing",     platforms:["youtube","tiktok"],              assignee:"Katie", due:"Apr 26", notes:"Waiting on voiceover",              tags:["gameplay","tutorial"]     },
   { id:8,  title:"Meet the Team — Katie",                  type:"Article",  status:"needs_record",platforms:["linkedin","instagram"],          assignee:"Terry", due:"Apr 28", notes:"Script approved, filming TBD",      tags:["team","culture"]          },
-  { id:9,  title:"GoFundMe Campaign Recap Video",          type:"Video",    status:"needs_record",platforms:["youtube","gofundme"],            assignee:"Katie", due:"Apr 30", notes:"Outline ready, needs filming",      tags:["crowdfunding","recap"]    },
+  { id:9,  title:"Last Light — Development Update Video",   type:"Video",    status:"needs_record",platforms:["youtube","tiktok"],              assignee:"Katie", due:"May 15", notes:"Outline ready, needs filming",      tags:["lastlight","devlog"]      },
   { id:10, title:"Retro vs Modern — Why It Matters",       type:"Carousel", status:"needs_record",platforms:["instagram","twitter","bluesky"], assignee:"Terry", due:"May 2",  notes:"Research done, design not started", tags:["retro","opinion"]         },
-  { id:11, title:"Backer Thank You Video",                 type:"Video",    status:"needs_record",platforms:["gofundme","youtube","instagram"], assignee:"Katie", due:"May 3",  notes:"Script in progress",                tags:["crowdfunding","gratitude"] },
+  { id:11, title:"Team Spotlight — Bryan N (Lead Artist)",  type:"Article",  status:"needs_record",platforms:["linkedin","instagram"],           assignee:"Terry", due:"May 17", notes:"Script in progress",                tags:["team","spotlight"]        },
   { id:12, title:"May Game Dev Sprint Teaser",             type:"Story",    status:"needs_record",platforms:["instagram","tiktok","bluesky"],  assignee:"Katie", due:"Apr 30", notes:"Not started",                       tags:["teaser","devlog"]         },
 ];
 
@@ -125,7 +117,7 @@ const PRIORITY_LEVELS = [
   { id:"low",      label:"Low",      color:"#7A75A0" },
 ];
 const TICKETS_SEED = [
-  { id:1, title:"Post GoFundMe milestone update",   description:"Write and publish the latest campaign milestone update across GoFundMe and LinkedIn.", assignee:"Terry", due:"2026-04-24", priority:"critical", platforms:["gofundme","linkedin"], status:"todo",        tags:["crowdfunding"] },
+  { id:1, title:"Publish Last Light character reveal", description:"Coordinate and publish Last Light character reveal across TikTok, Instagram, and Twitter with matching caption set.", assignee:"Aaron R", due:"2026-05-10", priority:"critical", platforms:["tiktok","instagram","twitter"], status:"todo", tags:["lastlight","reveal"] },
   { id:2, title:"Finish studio tour video edit",    description:"Complete colour grade, add music, export final cut.", assignee:"Katie",  due:"2026-04-24", priority:"high",     platforms:["tiktok","youtube"],     status:"in_progress", tags:["video","edit"]  },
   { id:3, title:"Reply to TikTok comments",         description:"Respond to all unanswered comments from the last 3 posts.", assignee:"Terry", due:"2026-04-25", priority:"med",      platforms:["tiktok"],               status:"todo",        tags:["community"]    },
   { id:4, title:"Write Bluesky Q&A thread",         description:"Draft a 10-post Q&A thread for Bluesky community engagement.", assignee:"Terry", due:"2026-04-25", priority:"med",      platforms:["bluesky"],              status:"todo",        tags:["community"]    },
@@ -133,12 +125,12 @@ const TICKETS_SEED = [
   { id:6, title:"Set up LinkedIn company page bio", description:"Write and publish official company bio with links.", assignee:"Terry", due:"2026-04-28", priority:"low",      platforms:["linkedin"],             status:"done",        tags:["setup"]        },
 ];
 const SCHED_SEED = [
-  { id:1, title:"Retro game dev day in the life", platform:"tiktok",    date:"Apr 24", time:"10:00 AM", status:"scheduled", type:"Video"    },
-  { id:2, title:"Studio pixel art showcase",      platform:"instagram", date:"Apr 24", time:"12:30 PM", status:"scheduled", type:"Carousel" },
-  { id:3, title:"GoFundMe milestone update",      platform:"gofundme",  date:"Apr 24", time:"2:00 PM",  status:"scheduled", type:"Update"   },
-  { id:4, title:"Q&A thread: ask the dev",        platform:"bluesky",   date:"Apr 25", time:"9:00 AM",  status:"draft",     type:"Thread"   },
-  { id:5, title:"Kato.8 Studios story post",      platform:"linkedin",  date:"Apr 25", time:"11:00 AM", status:"draft",     type:"Article"  },
-  { id:6, title:"Gameplay walkthrough clip",      platform:"youtube",   date:"Apr 26", time:"3:00 PM",  status:"review",    type:"Video"    },
+  { id:1, title:"Last Light devlog — week in the life",   platform:"tiktok",    date:"May 6",  time:"10:00 AM", status:"scheduled", type:"Video"    },
+  { id:2, title:"Corebound character art showcase",       platform:"instagram", date:"May 7",  time:"12:30 PM", status:"scheduled", type:"Carousel" },
+  { id:3, title:"Corebound dev diary — episode 1",        platform:"youtube",   date:"May 10", time:"2:00 PM",  status:"scheduled", type:"Video"    },
+  { id:4, title:"Q&A thread: ask the dev",                platform:"bluesky",   date:"May 11", time:"9:00 AM",  status:"draft",     type:"Thread"   },
+  { id:5, title:"Studio update — May sprint kickoff",     platform:"linkedin",  date:"May 12", time:"11:00 AM", status:"draft",     type:"Article"  },
+  { id:6, title:"Big Boss Cleanup gameplay reveal",       platform:"youtube",   date:"May 15", time:"3:00 PM",  status:"review",    type:"Video"    },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -188,17 +180,17 @@ function useLiveData() {
 // ─────────────────────────────────────────────────────────────────────────────
 // AI AGENT
 // ─────────────────────────────────────────────────────────────────────────────
-const AGENT_SYSTEM = `You are Orbit AI, a specialist social media strategist and content agent for Kato.8 Studios — an indie retro game studio run by Terry Teng, currently running an active crowdfunding campaign on GoFundMe to fund the launch of the studio.
+const AGENT_SYSTEM = `You are Orbit AI, a specialist social media strategist and content agent for Kato.8 Studios — an indie retro game studio run by Terry Teng, developing three original titles: Last Light, Corebound, and Big Boss Cleanup.
 
-Kato.8 Studios is active on TikTok (@kato.8_studios, 1,065 followers), Instagram (@kato.8_studios), YouTube (@Kato.8Studios), X/Twitter (@Kato8_Studios), Bluesky (@kato-8.bsky.social, 28 followers), LinkedIn, and GoFundMe. Their content covers: game dev devlogs, studio origin story, behind-the-scenes footage, gameplay clips, retro game culture, backer milestone updates, team spotlights, and community Q&As.
+Kato.8 Studios is active on TikTok (@kato.8_studios, 1,065 followers), Instagram (@kato.8_studios), YouTube (@Kato.8Studios), X/Twitter (@Kato8_Studios), Bluesky (@kato-8.bsky.social, 28 followers), and LinkedIn. Content pillars: game dev devlogs, art showcases, game reveals, team spotlights, and community engagement. Each game has its own voice — Last Light (atmospheric/narrative), Corebound (action/character-driven), Big Boss Cleanup (comedic/casual).
 
-Their goals: grow TikTok and Bluesky followings, drive GoFundMe backers, build a community of retro game enthusiasts, and establish Kato.8 Studios as a credible indie studio voice.
+Their goals: grow TikTok and Bluesky followings, build hype for all three game titles, attract collaborators and players, and establish Kato.8 Studios as a credible indie studio voice.
 
 When suggesting content:
 1. Reference what's already working (high-engagement content types)
 2. Identify trending formats in the indie game / retro gaming niche
 3. Suggest specific, actionable ideas with: title, format, platforms, why it works, and a hook/caption
-4. Prioritise content that drives both social growth AND GoFundMe conversions
+4. Tie content suggestions to the right game title and its tone when relevant
 
 Format suggestions as:
 **[Title]** | [Platform(s)] | [Format]
@@ -235,7 +227,7 @@ function AIAgent({ cmsItems }) {
 
   const QUICK_PROMPTS = [
     "Suggest 3 TikTok ideas for a retro game studio that could go viral",
-    "What content would drive the most GoFundMe backers right now?",
+    "Build a reveal campaign for the Last Light character roster",
     "How do we grow from 1K to 10K TikTok followers faster?",
     "What retro gaming trends should Kato.8 be tapping into?",
     "Analyse our existing content and tell me what we should do more of",
@@ -317,7 +309,7 @@ function AIAgent({ cmsItems }) {
 // ─────────────────────────────────────────────────────────────────────────────
 // ANALYTICS
 // ─────────────────────────────────────────────────────────────────────────────
-function Analytics({ gfm, liveData, available }) {
+function Analytics({ liveData, available }) {
   const [active, setActive] = useState("tiktok");
   const data   = liveData[active]||DUMMY[active];
   const isLive = available[active];
@@ -341,37 +333,26 @@ function Analytics({ gfm, liveData, available }) {
         : <div className="rounded-xl p-4 flex items-center gap-3" style={{background:K8.surface,border:`1px dashed ${K8.border}`}}><span className="text-xl">{plat?.icon}</span><p className="text-sm" style={{color:K8.muted}}>Showing <strong style={{color:K8.white}}>demo data</strong> for {plat?.label}. Add the API key to Vercel env vars to go live.</p></div>
       }
 
-      {active==="gofundme"?(
-        <Card>
-          <p className="text-sm font-semibold mb-3" style={{color:K8.white}}>{gfm.title}</p>
-          <div className="flex justify-between text-xs mb-1" style={{color:K8.muted}}><span>${fmt(gfm.raised)} raised</span><span>Goal: ${fmt(gfm.goal)}</span></div>
-          <div className="h-3 rounded-full overflow-hidden mb-1" style={{background:K8.surface}}><div className="h-full rounded-full" style={{width:`${gfm.goal>0?Math.min((gfm.raised/gfm.goal)*100,100):0}%`,background:"#22c55e"}}/></div>
-          <p className="text-xs font-semibold text-emerald-400">{gfm.goal>0?Math.round((gfm.raised/gfm.goal)*100):0}% funded · {fmt(gfm.donors)} donors · {gfm.daysLeft} days left</p>
-        </Card>
-      ):(
-        <>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {[{l:"Followers",v:fmt(data.followers)},{l:"Growth",v:`${data.growth>0?"+":""}${data.growth}%`,c:data.growth>0?"#22c55e":data.growth<0?"#E87055":K8.mutedLight},{l:"Impressions",v:fmt(data.impressions)},{l:"Eng. Rate",v:`${data.engagement}%`},{l:"Reach",v:fmt(data.reach)},{l:"Clicks",v:fmt(data.clicks)}].map(k=>(
-              <div key={k.l} className="rounded-xl p-4 border" style={{background:K8.card,borderColor:K8.border}}>
-                <p className="text-xs font-medium uppercase tracking-wide mb-1" style={{color:K8.muted}}>{k.l}</p>
-                <p className="text-xl font-bold" style={{color:k.c||K8.white}}>{k.v}</p>
-              </div>
-            ))}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        {[{l:"Followers",v:fmt(data.followers)},{l:"Growth",v:`${data.growth>0?"+":""}${data.growth}%`,c:data.growth>0?"#22c55e":data.growth<0?"#E87055":K8.mutedLight},{l:"Impressions",v:fmt(data.impressions)},{l:"Eng. Rate",v:`${data.engagement}%`},{l:"Reach",v:fmt(data.reach)},{l:"Clicks",v:fmt(data.clicks)}].map(k=>(
+          <div key={k.l} className="rounded-xl p-4 border" style={{background:K8.card,borderColor:K8.border}}>
+            <p className="text-xs font-medium uppercase tracking-wide mb-1" style={{color:K8.muted}}>{k.l}</p>
+            <p className="text-xl font-bold" style={{color:k.c||K8.white}}>{k.v}</p>
           </div>
-          <Card>
-            <p className="text-sm font-semibold mb-4" style={{color:K8.white}}>Weekly Impressions — All Platforms</p>
-            <ResponsiveContainer width="100%" height={200}>
-              <AreaChart data={WEEKLY}>
-                <defs>{PLATFORMS.map(p=><linearGradient key={p.id} id={`g${p.id}`} x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={p.color} stopOpacity={0.3}/><stop offset="95%" stopColor={p.color} stopOpacity={0}/></linearGradient>)}</defs>
-                <XAxis dataKey="day" tick={{fontSize:11,fill:K8.muted}} axisLine={false} tickLine={false}/>
-                <YAxis tick={{fontSize:11,fill:K8.muted}} axisLine={false} tickLine={false} tickFormatter={fmt}/>
-                <Tooltip formatter={(v,n)=>[fmt(v),getPl(n)?.label||n]} contentStyle={{borderRadius:10,border:`1px solid ${K8.border}`,background:K8.card,color:K8.white,fontSize:12}}/>
-                {PLATFORMS.map(p=><Area key={p.id} type="monotone" dataKey={p.id} stroke={p.color} fill={`url(#g${p.id})`} strokeWidth={active===p.id?2.5:1} strokeOpacity={active===p.id?1:0.35} dot={false}/>)}
-              </AreaChart>
-            </ResponsiveContainer>
-          </Card>
-        </>
-      )}
+        ))}
+      </div>
+      <Card>
+        <p className="text-sm font-semibold mb-4" style={{color:K8.white}}>Weekly Impressions — All Platforms</p>
+        <ResponsiveContainer width="100%" height={200}>
+          <AreaChart data={WEEKLY}>
+            <defs>{PLATFORMS.map(p=><linearGradient key={p.id} id={`g${p.id}`} x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor={p.color} stopOpacity={0.3}/><stop offset="95%" stopColor={p.color} stopOpacity={0}/></linearGradient>)}</defs>
+            <XAxis dataKey="day" tick={{fontSize:11,fill:K8.muted}} axisLine={false} tickLine={false}/>
+            <YAxis tick={{fontSize:11,fill:K8.muted}} axisLine={false} tickLine={false} tickFormatter={fmt}/>
+            <Tooltip formatter={(v,n)=>[fmt(v),getPl(n)?.label||n]} contentStyle={{borderRadius:10,border:`1px solid ${K8.border}`,background:K8.card,color:K8.white,fontSize:12}}/>
+            {PLATFORMS.map(p=><Area key={p.id} type="monotone" dataKey={p.id} stroke={p.color} fill={`url(#g${p.id})`} strokeWidth={active===p.id?2.5:1} strokeOpacity={active===p.id?1:0.35} dot={false}/>)}
+          </AreaChart>
+        </ResponsiveContainer>
+      </Card>
     </div>
   );
 }
@@ -801,8 +782,8 @@ const SETUP_GUIDES={
   linkedin: {steps:["Go to developer.linkedin.com → My Apps → Create app","Request r_organization_social + r_organization_followers scopes","Add LINKEDIN_ACCESS_TOKEN + LINKEDIN_ORG_ID to Vercel env vars"]},
 };
 
-function Connect({available,gfm,onGfm}){
-  const[expanded,setExpanded]=useState(null);const[editGfm,setEditGfm]=useState(false);const[gfForm,setGfForm]=useState(gfm);
+function Connect({available}){
+  const[expanded,setExpanded]=useState(null);
   const inputStyle={background:K8.surface,border:`1px solid ${K8.border}`,color:K8.white,borderRadius:"8px",padding:"6px 10px",fontSize:"13px",outline:"none",width:"100%"};
   return(
     <div className="space-y-4">
@@ -819,12 +800,10 @@ function Connect({available,gfm,onGfm}){
               :isLive?<p className="text-xs font-medium mt-0.5 text-emerald-400">✓ Live data active</p>
               :<p className="text-xs mt-0.5" style={{color:K8.muted}}>No API key — showing demo data</p>}
             </div>
-            {p.manual?<button onClick={()=>setEditGfm(!editGfm)} className="px-3 py-1.5 text-xs font-medium rounded-lg border" style={{borderColor:K8.border,color:K8.mutedLight}}>{editGfm?"Cancel":"Edit Data"}</button>
-            :isLive?<span className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg" style={{background:"#0D2A1A",border:"1px solid #1A5030",color:"#4ade80"}}><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"/>Live</span>
+            {isLive?<span className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg" style={{background:"#0D2A1A",border:"1px solid #1A5030",color:"#4ade80"}}><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"/>Live</span>
             :<button onClick={()=>setExpanded(isOpen?null:p.id)} className="px-3 py-1.5 text-xs font-medium rounded-lg text-white" style={{background:p.color}}>{isOpen?"Hide":"Setup →"}</button>}
           </div>
-          {p.manual&&editGfm&&(<div className="mt-4 pt-4 space-y-3" style={{borderTop:`1px solid ${K8.border}`}}><div className="grid grid-cols-2 gap-3">{[{k:"title",l:"Title",t:"text"},{k:"url",l:"URL",t:"url"},{k:"goal",l:"Goal ($)",t:"number"},{k:"raised",l:"Raised ($)",t:"number"},{k:"donors",l:"Donors",t:"number"},{k:"daysLeft",l:"Days Left",t:"number"}].map(f=><div key={f.k}><label className="text-xs font-medium block mb-1" style={{color:K8.muted}}>{f.l}</label><input type={f.t} value={gfForm[f.k]||""} onChange={e=>setGfForm(x=>({...x,[f.k]:f.t==="number"?Number(e.target.value):e.target.value}))} style={inputStyle}/></div>)}</div><textarea rows={2} value={gfForm.latestUpdate||""} onChange={e=>setGfForm(x=>({...x,latestUpdate:e.target.value}))} placeholder="Latest update…" style={{...inputStyle,resize:"none"}}/><button onClick={()=>{onGfm(gfForm);setEditGfm(false);}} className="px-4 py-1.5 text-xs font-semibold rounded-lg" style={{background:K8.pink,color:"#fff"}}>Save</button></div>)}
-          {!p.manual&&isOpen&&guide&&(<div className="mt-4 pt-4" style={{borderTop:`1px solid ${K8.border}`}}><p className="text-xs font-semibold mb-2" style={{color:K8.muted}}>Setup steps</p><ol className="space-y-1.5">{guide.steps.map((step,i)=><li key={i} className="flex gap-2 text-xs" style={{color:K8.mutedLight}}><span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5" style={{background:p.color}}>{i+1}</span>{step}</li>)}</ol></div>)}
+          {isOpen&&guide&&(<div className="mt-4 pt-4" style={{borderTop:`1px solid ${K8.border}`}}><p className="text-xs font-semibold mb-2" style={{color:K8.muted}}>Setup steps</p><ol className="space-y-1.5">{guide.steps.map((step,i)=><li key={i} className="flex gap-2 text-xs" style={{color:K8.mutedLight}}><span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5" style={{background:p.color}}>{i+1}</span>{step}</li>)}</ol></div>)}
         </div>
       );})}
     </div>
@@ -849,7 +828,6 @@ export default function Dashboard(){
   const{user}=useUser();const{signOut}=useClerk();
   const{liveData,available}=useLiveData();
   const[tab,setTab]=useState("analytics");
-  const[gfm,setGfm]=useState(DEFAULT_GFM);
   const[cmsItems]=useState(CMS_SEED);
   const liveCount=Object.keys(available).length;
 
@@ -882,7 +860,6 @@ export default function Dashboard(){
             <span className="text-xs font-medium px-2.5 py-1 rounded-full border" style={liveCount>0?{background:"#0D2A1A",borderColor:"#1A5030",color:"#4ade80"}:{background:K8.surface,borderColor:K8.border,color:K8.muted}}>
               {liveCount>0?`${liveCount} live`:"Demo mode"}
             </span>
-            <span className="text-xs font-medium px-2.5 py-1 rounded-full border" style={{background:"#0D2A1A",borderColor:"#1A5030",color:"#4ade80"}}>💚 GoFundMe live</span>
             <span className="text-xs font-medium px-2.5 py-1 rounded-full border" style={{background:K8.surface,borderColor:K8.border,color:K8.muted}}>🗂️ {cmsItems.length} content pieces</span>
           </div>
 
@@ -910,14 +887,14 @@ export default function Dashboard(){
       </header>
 
       <main className="max-w-7xl mx-auto px-5 py-6">
-        {tab==="analytics"  && <Analytics gfm={gfm} liveData={liveData} available={available}/>}
+        {tab==="analytics"  && <Analytics liveData={liveData} available={available}/>}
         {tab==="cms"        && <CMS/>}
         {tab==="agent"      && <AIAgent cmsItems={cmsItems}/>}
         {tab==="scheduler"  && <Scheduler/>}
         {tab==="projects"   && <Projects/>}
         {tab==="comms"      && <Comms/>}
         {tab==="community"  && <Community/>}
-        {tab==="connect"    && <Connect available={available} gfm={gfm} onGfm={setGfm}/>}
+        {tab==="connect"    && <Connect available={available}/>}
       </main>
     </div>
   );
