@@ -867,6 +867,7 @@ export default function Dashboard(){
           <div className="ml-auto flex items-center gap-3">
             {user&&<>
               <span className="text-xs hidden md:block" style={{color:K8.muted}}>{user.primaryEmailAddress?.emailAddress}</span>
+              <a href="https://kato8studiosapp.xyz" target="_blank" rel="noopener noreferrer" className="text-xs px-2 py-1 rounded-lg transition-colors hidden sm:inline-flex items-center gap-1" style={{color:K8.muted,border:`1px solid ${K8.border}`,textDecoration:'none'}}>← Hub</a>
               <button onClick={()=>signOut()} className="text-xs px-2 py-1 rounded-lg transition-colors" style={{color:K8.muted,border:`1px solid ${K8.border}`}} onMouseEnter={e=>{e.target.style.color=K8.white;e.target.style.borderColor=K8.borderLight;}} onMouseLeave={e=>{e.target.style.color=K8.muted;e.target.style.borderColor=K8.border;}}>Sign out</button>
             </>}
           </div>
