@@ -215,7 +215,8 @@ function AIAgent({ cmsItems }) {
     const newMessages = [...messages,{role:"user",content:text}];
     setMessages(newMessages); setLoading(true);
     try {
-      const res = await fetch("/api/ai",{ method:"POST", headers:{"Content-Type":"application/json"},
+      const token = await window.Clerk?.session?.getToken();
+      const res = await fetch("/api/ai",{ method:"POST", headers:{"Content-Type":"application/json", ...(token?{Authorization:`Bearer ${token}`}:{})},
         body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1000,
           system:AGENT_SYSTEM+`\n\nContent library:\n${existingContent}`, messages:newMessages })});
       const data = await res.json();
